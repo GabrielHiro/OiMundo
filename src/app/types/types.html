@@ -1,0 +1,22 @@
+<div>
+    <h2>{{ post1.titulo }}</h2>
+    <p>{{ post1.conteudo }}</p>
+    <p><strong>Autor:</strong> {{ post1.autor }}</p>
+    <p><strong>Data:</strong> {{ post1.data | date:'dd/MM/yyyy' }}</p>
+</div>
+
+<hr>
+
+@for(post of posts; track $index)
+{
+    <div>
+        <h2>{{ post.titulo }}</h2>
+        <p>{{ post.conteudo }}</p>
+        <p><strong>Autor:</strong> {{ post.autor }}</p>
+        <p><strong>Data:</strong> {{ post.data | date:'dd/MM/yyyy' }}</p>
+    </div>
+}
+@empty
+{
+    <p>Nenhum post encontrado.</p>
+}
