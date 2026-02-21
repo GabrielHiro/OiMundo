@@ -46,6 +46,17 @@ npm start
 - **Detalhes do Evento**: mostra todas as informações, vagas restantes e botão de inscrição
 - **Minhas Inscrições**: lista eventos nos quais está inscrito, com opção de cancelar
 
+## Screenshots
+
+**Catálogo de Eventos**
+![Catálogo](image/Catalogo.png)
+
+**Detalhes do Evento**
+![Detalhes do Evento](image/EventoMaisInfo.png)
+
+**Minhas Inscrições**
+![Minhas Inscrições](image/MinhaInscricoes.png)
+
 ## Estrutura principal
 
 ```
@@ -76,4 +87,5 @@ O back-end fica em um repositório separado. É feito com Node.js + Express + Mo
 Rodar a API primeiro antes de usar o front.
 
 ## Autor
-Gabriel Hiro Furukawa
+Gabriel Hiro Furukawa - RA: 223190
+Rafael Perassi - RA: 215216
