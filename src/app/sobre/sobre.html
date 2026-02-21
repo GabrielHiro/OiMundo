@@ -1,1 +1,42 @@
-<p>sobre works!</p>
+<h1>Olá, {{nome}} </h1>
+
+
+@if (idade >= 18) 
+{
+  <p>Você é maior de idade.</p>
+}
+@else 
+{
+  <p>Você é menor de idade.</p>
+}
+
+<ul [ngClass]="{'ativo': logado, 'inativo': !logado}">
+    @for (item of lista; track $index)
+    {
+        <li (click)="selecionado = item">{{$index}} - {{item}}</li>
+    }
+</ul>
+
+@if (selecionado) 
+{
+  <p>Item selecionado: {{selecionado}}</p>
+}
+
+<input type="text" [(ngModel)]="nome" />
+
+<button (click)="enviar()">Salvar</button>
+<br>
+<button (click)="mostrar = !mostrar">Mostrar/Esconder</button>
+
+@if (mostrar) 
+{
+  <p>Este texto pode ser mostrado ou escondido.</p>
+}
+@else 
+{
+  <p>O texto está escondido.</p>
+}
+<hr>
+
+<h3>Adicione itens na lista</h3>
+<input (keyup.enter)="adicionarItem($event)" type="text" placeholder="Adicionar item" />
