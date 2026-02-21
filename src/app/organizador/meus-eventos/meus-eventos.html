@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Meus Eventos</h2>
+  <a routerLink="/criar-evento" class="btn-criar">+ Novo Evento</a>
+
+  @if (eventos.length === 0) {
+    <p class="vazio">Nenhum evento criado ainda.</p>
+  }
+
+  <div class="lista">
+    @for (ev of eventos; track ev._id) {
+      <div class="card">
+        <div class="card-header">
+          <h3>{{ ev.titulo }}</h3>
+          <span class="status" [class]="status(ev).toLowerCase()">{{ status(ev) }}</span>
+        </div>
+        <p>{{ ev.descricao }}</p>
+        <p class="info">
+          <strong>Data:</strong> {{ ev.dataHora | date:'dd/MM/yyyy HH:mm' }} |
+          <strong>Local:</strong> {{ ev.local }} |
+          <strong>Vagas:</strong> {{ ev.vagas }} |
+          <strong>Categoria:</strong> {{ ev.categoria }}
+        </p>
+        <div class="acoes">
+          <a [routerLink]="['/editar-evento', ev._id]" class="btn-editar">Editar</a>
+          <a [routerLink]="['/inscritos', ev._id]" class="btn-ver">Ver Inscritos</a>
+          <button (click)="excluir(ev._id!)" class="btn-excluir">Excluir</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

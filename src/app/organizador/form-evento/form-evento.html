@@ -1,0 +1,36 @@
+<div class="form-container">
+  <h2>{{ editando ? 'Editar Evento' : 'Criar Evento' }}</h2>
+
+  @if (erro) {
+    <p class="erro">{{ erro }}</p>
+  }
+
+  <form (ngSubmit)="salvar()">
+    <label>Título</label>
+    <input type="text" [(ngModel)]="titulo" name="titulo" required />
+
+    <label>Descrição</label>
+    <textarea [(ngModel)]="descricao" name="descricao" rows="4" required></textarea>
+
+    <label>Data e Hora</label>
+    <input type="datetime-local" [(ngModel)]="dataHora" name="dataHora" required />
+
+    <label>Local (ou "Online")</label>
+    <input type="text" [(ngModel)]="local" name="local" required />
+
+    <label>Categoria</label>
+    <select [(ngModel)]="categoria" name="categoria">
+      @for (cat of categorias; track cat) {
+        <option [value]="cat">{{ cat }}</option>
+      }
+    </select>
+
+    <label>Número de Vagas</label>
+    <input type="number" [(ngModel)]="vagas" name="vagas" min="1" required />
+
+    <label>URL da Imagem (opcional)</label>
+    <input type="text" [(ngModel)]="imagemUrl" name="imagemUrl" />
+
+    <button type="submit">{{ editando ? 'Salvar Alterações' : 'Criar Evento' }}</button>
+  </form>
+</div>

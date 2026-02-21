@@ -1,0 +1,35 @@
+@if (evento) {
+  <div class="container">
+    @if (evento.imagemUrl) {
+      <img [src]="evento.imagemUrl" alt="Imagem do evento" class="banner" />
+    }
+
+    <span class="categoria">{{ evento.categoria }}</span>
+    <h1>{{ evento.titulo }}</h1>
+
+    <div class="meta">
+      <p><strong>Data:</strong> {{ evento.dataHora | date:'dd/MM/yyyy HH:mm' }}</p>
+      <p><strong>Local:</strong> {{ evento.local }}</p>
+      <p><strong>Vagas disponíveis:</strong> {{ vagasDisponiveis() }} de {{ evento.vagas }}</p>
+      <p><strong>Inscritos:</strong> {{ evento.totalInscritos || 0 }}</p>
+    </div>
+
+    <div class="descricao">
+      <h3>Descrição</h3>
+      <p>{{ evento.descricao }}</p>
+    </div>
+
+    @if (mensagem) {
+      <p class="sucesso">{{ mensagem }}</p>
+    }
+    @if (erro) {
+      <p class="erro">{{ erro }}</p>
+    }
+
+    @if (vagasDisponiveis() > 0) {
+      <button (click)="inscrever()" class="btn-inscrever">Inscrever-se</button>
+    } @else {
+      <p class="esgotado">Vagas esgotadas</p>
+    }
+  </div>
+}

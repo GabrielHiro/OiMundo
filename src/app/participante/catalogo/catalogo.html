@@ -1,0 +1,50 @@
+<div class="container">
+  <h2>Catálogo de Eventos</h2>
+
+  <div class="filtros">
+    <input
+      type="text"
+      [(ngModel)]="busca"
+      placeholder="Buscar por título ou descrição..."
+      (keyup.enter)="pesquisar()"
+    />
+
+    <select [(ngModel)]="categoriaFiltro" (change)="pesquisar()">
+      <option value="">Todas as categorias</option>
+      @for (cat of categorias; track cat) {
+        @if (cat) {
+          <option [value]="cat">{{ cat }}</option>
+        }
+      }
+    </select>
+
+    <select [(ngModel)]="ordem" (change)="pesquisar()">
+      <option value="desc">Mais recentes</option>
+      <option value="asc">Mais antigos</option>
+    </select>
+
+    <button (click)="pesquisar()">Buscar</button>
+  </div>
+
+  @if (eventos.length === 0) {
+    <p class="vazio">Nenhum evento encontrado.</p>
+  }
+
+  <div class="grid">
+    @for (ev of eventos; track ev._id) {
+      <div class="card">
+        @if (ev.imagemUrl) {
+          <img [src]="ev.imagemUrl" alt="Imagem do evento" />
+        }
+        <div class="card-body">
+          <span class="categoria">{{ ev.categoria }}</span>
+          <h3>{{ ev.titulo }}</h3>
+          <p class="desc">{{ ev.descricao | slice:0:100 }}{{ ev.descricao.length > 100 ? '...' : '' }}</p>
+          <p class="info">{{ ev.dataHora | date:'dd/MM/yyyy HH:mm' }} · {{ ev.local }}</p>
+          <p class="vagas">{{ ev.vagas }} vagas</p>
+          <a [routerLink]="['/evento', ev._id]" class="btn-ver">Ver Detalhes</a>
+        </div>
+      </div>
+    }
+  </div>
+</div>
