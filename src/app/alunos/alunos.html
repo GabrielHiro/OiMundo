@@ -1,0 +1,42 @@
+<h1>Alunos</h1>>
+<section>
+    <h2>Novo Aluno</h2>
+    <form (ngSubmit)="criar()">
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" [(ngModel)]="nome" name="nome" required>
+        </div>
+        <div>
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" [(ngModel)]="idade" name="idade" required>
+        </div>
+        <div>
+            <label for="curso">Curso:</label>
+            <input type="text" id="curso" [(ngModel)]="curso" name="curso" required>
+        </div>
+        <div>
+            <label for="notas">Notas (separadas por vírgula):</label>
+            <input type="text" id="notas" [(ngModel)]="notasCsv" name="notas" required>
+        </div>
+        <button type="submit" [disabled]="salvando" >Adicionar Aluno</button>
+    </form>
+       
+    @if (erro) {<p style="color: red;">{{erro}}</p>}
+</section>
+ 
+<section>
+    <h2>Lista de Alunos</h2>
+    <button (click)="carregar()">Carregar Alunos</button>
+    @if(carregando) {<p>Carregando...</p>}  
+    <ul>
+        @for(aluno of alunos;  track $index ) {
+            <li>
+                {{aluno.nome}} - {{aluno.idade}} anos - {{aluno.curso}} - Notas: {{aluno.notas.join(', ')}}
+                @if(aluno._id) {<button (click)="excluir(aluno._id)">Excluir</button>}
+            </li>
+        }
+        @empty {
+            <p>nenhum aluno cadastrado</p>
+        }
+    </ul>
+</section>
