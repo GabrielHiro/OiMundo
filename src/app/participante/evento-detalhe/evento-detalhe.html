@@ -1,29 +1,29 @@
-@if (evento) {
+@if (evento(); as ev) {
   <div class="container">
-    @if (evento.imagemUrl) {
-      <img [src]="evento.imagemUrl" alt="Imagem do evento" class="banner" />
+    @if (ev.imagemUrl) {
+      <img [src]="ev.imagemUrl" alt="Imagem do evento" class="banner" />
     }
 
-    <span class="categoria">{{ evento.categoria }}</span>
-    <h1>{{ evento.titulo }}</h1>
+    <span class="categoria">{{ ev.categoria }}</span>
+    <h1>{{ ev.titulo }}</h1>
 
     <div class="meta">
-      <p><strong>Data:</strong> {{ evento.dataHora | date:'dd/MM/yyyy HH:mm' }}</p>
-      <p><strong>Local:</strong> {{ evento.local }}</p>
-      <p><strong>Vagas disponíveis:</strong> {{ vagasDisponiveis() }} de {{ evento.vagas }}</p>
-      <p><strong>Inscritos:</strong> {{ evento.totalInscritos || 0 }}</p>
+      <p><strong>Data:</strong> {{ ev.dataHora | date:'dd/MM/yyyy HH:mm' }}</p>
+      <p><strong>Local:</strong> {{ ev.local }}</p>
+      <p><strong>Vagas disponíveis:</strong> {{ vagasDisponiveis() }} de {{ ev.vagas }}</p>
+      <p><strong>Inscritos:</strong> {{ ev.totalInscritos || 0 }}</p>
     </div>
 
     <div class="descricao">
       <h3>Descrição</h3>
-      <p>{{ evento.descricao }}</p>
+      <p style="white-space: pre-line">{{ ev.descricao }}</p>
     </div>
 
-    @if (mensagem) {
-      <p class="sucesso">{{ mensagem }}</p>
+    @if (mensagem()) {
+      <p class="sucesso">{{ mensagem() }}</p>
     }
-    @if (erro) {
-      <p class="erro">{{ erro }}</p>
+    @if (erro()) {
+      <p class="erro">{{ erro() }}</p>
     }
 
     @if (vagasDisponiveis() > 0) {
