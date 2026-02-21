@@ -106,5 +106,5 @@ npm run dev
 A API sobe em `http://localhost:3000`.
 
 ## Autor
-Gabriel Hiro Furukawa - RA: 223190
-Rafael Perassi - RA: 215216
+- **Gabriel Hiro Furukawa** - RA: 223190
+- **Rafael Perassi** - RA: 215216
