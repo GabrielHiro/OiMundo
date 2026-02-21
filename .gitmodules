@@ -1,0 +1,4 @@
+[submodule "ControleFinanceiro-API-REST"]
+	path = ControleFinanceiro-API-REST
+	url = https://github.com/GabrielHiro/ControleFinanceiro-API-REST.git
+	branch = feature/AtividadeFinal

@@ -14,12 +14,20 @@ Esse projeto consome a API REST (Node.js + Express) e implementa todas as telas 
 
 ## Como rodar
 
-1. Instalar dependências:
+1. Clonar o repo **com o submodule** do back-end:
+```bash
+git clone --recurse-submodules <url-deste-repo>
+```
+
+> Se já clonou sem o flag, rode:
+> ```bash
+> git submodule update --init --recursive
+> ```
+
+2. Instalar dependências do front-end:
 ```bash
 npm install
 ```
-
-2. Garantir que a API back-end está rodando em `http://localhost:3000`
 
 3. Subir o servidor de dev:
 ```bash
@@ -80,11 +88,22 @@ src/app/
 └── app.config.ts            # providers (HttpClient, Router)
 ```
 
-## Back-end
+## Back-end (submodule)
 
-O back-end fica em um repositório separado. É feito com Node.js + Express + MongoDB.
+O back-end está incluído nesse repo como **git submodule**, apontando para a branch `feature/AtividadeFinal` do repositório:
 
-Rodar a API primeiro antes de usar o front.
+> https://github.com/GabrielHiro/ControleFinanceiro-API-REST
+
+A pasta `ControleFinanceiro-API-REST/` contém a API REST feita com Node.js + Express + MongoDB. Para rodar:
+
+```bash
+cd ControleFinanceiro-API-REST
+# crie o .env com base no .env.example
+npm install
+npm run dev
+```
+
+A API sobe em `http://localhost:3000`.
 
 ## Autor
 Gabriel Hiro Furukawa - RA: 223190
