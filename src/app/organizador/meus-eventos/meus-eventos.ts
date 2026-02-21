@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, signal } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ApiService, Evento } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-meus-eventos',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, DatePipe, RouterLink],
   templateUrl: './meus-eventos.html',
   styleUrl: './meus-eventos.css',
 })
 export class MeusEventos implements OnInit {
-  eventos: Evento[] = [];
+  eventos = signal<Evento[]>([]);
 
   constructor(private api: ApiService, private auth: AuthService) {}
 
@@ -22,14 +22,13 @@ export class MeusEventos implements OnInit {
   carregar() {
     const id = this.auth.usuario()?._id;
     if (!id) return;
-    this.api.eventosDoOrganizador(id).subscribe((data) => (this.eventos = data));
+    this.api.eventosDoOrganizador(id).subscribe((data) => this.eventos.set(data));
   }
 
   status(ev: Evento): string {
     const agora = new Date();
     const data = new Date(ev.dataHora);
     if (data > agora) return 'Futuro';
-    // considera "ocorrendo" se for no mesmo dia
     if (data.toDateString() === agora.toDateString()) return 'Ocorrendo';
     return 'Finalizado';
   }

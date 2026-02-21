@@ -1,12 +1,12 @@
 <div class="container">
   <h2>Minhas Inscrições</h2>
 
-  @if (inscricoes.length === 0) {
+  @if (inscricoes().length === 0) {
     <p class="vazio">Nenhuma inscrição até o momento.</p>
   }
 
   <div class="lista">
-    @for (insc of inscricoes; track insc._id) {
+    @for (insc of inscricoes(); track insc._id) {
       <div class="card">
         <div class="card-info">
           <h3>{{ $any(insc.eventoId).titulo }}</h3>

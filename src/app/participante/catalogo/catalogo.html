@@ -26,12 +26,12 @@
     <button (click)="pesquisar()">Buscar</button>
   </div>
 
-  @if (eventos.length === 0) {
+  @if (eventos().length === 0) {
     <p class="vazio">Nenhum evento encontrado.</p>
   }
 
   <div class="grid">
-    @for (ev of eventos; track ev._id) {
+    @for (ev of eventos(); track ev._id) {
       <div class="card">
         @if (ev.imagemUrl) {
           <img [src]="ev.imagemUrl" alt="Imagem do evento" />

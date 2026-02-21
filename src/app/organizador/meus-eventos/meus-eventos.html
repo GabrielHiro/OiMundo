@@ -2,12 +2,12 @@
   <h2>Meus Eventos</h2>
   <a routerLink="/criar-evento" class="btn-criar">+ Novo Evento</a>
 
-  @if (eventos.length === 0) {
+  @if (eventos().length === 0) {
     <p class="vazio">Nenhum evento criado ainda.</p>
   }
 
   <div class="lista">
-    @for (ev of eventos; track ev._id) {
+    @for (ev of eventos(); track ev._id) {
       <div class="card">
         <div class="card-header">
           <h3>{{ ev.titulo }}</h3>

@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, signal } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiService, Evento } from '../../services/api.service';
 
 @Component({
   selector: 'app-catalogo',
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, DatePipe, FormsModule, RouterLink],
   templateUrl: './catalogo.html',
   styleUrl: './catalogo.css',
 })
 export class Catalogo implements OnInit {
-  eventos: Evento[] = [];
+  eventos = signal<Evento[]>([]);
   busca = '';
   categoriaFiltro = '';
   ordem = 'desc';
@@ -31,6 +31,6 @@ export class Catalogo implements OnInit {
         categoria: this.categoriaFiltro || undefined,
         ordem: this.ordem,
       })
-      .subscribe((data) => (this.eventos = data));
+      .subscribe((data) => this.eventos.set(data));
   }
 }
