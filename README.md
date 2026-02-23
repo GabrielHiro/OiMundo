@@ -1,16 +1,9 @@
-# Gerenciador de Eventos - Front-end
+# Gerenciador de Eventos
 
 Front-end do sistema de gerenciamento de eventos, construído com Angular 21.
 
 Esse projeto consome a API REST (Node.js + Express) e implementa todas as telas tanto do Organizador quanto do Participante.
 
-## Stack
-
-- Angular 21 (standalone components)
-- TypeScript
-- RxJS
-- Angular Router
-- HttpClient
 
 ## Como rodar
 
@@ -42,6 +35,8 @@ npm start
 - Tela de cadastro com seleção de perfil (Organizador ou Participante)
 - Tela de login
 - Navegação muda conforme o perfil logado
+
+Utilizamos um sistema de autenticação simplificado, sem tokens ou senhas reais, apenas para fins de demonstração. O back-end aceita qualquer email e senha, e retorna um usuário com o perfil escolhido no cadastro.
 
 ### Organizador
 - **Meus Eventos**: lista os eventos criados com status (Futuro / Ocorrendo / Finalizado)
@@ -105,6 +100,14 @@ npm run dev
 
 A API sobe em `http://localhost:3000`.
 
+## Stack
+
+- Angular 21 (standalone components)
+- TypeScript
+- RxJS
+- Angular Router
+- HttpClient
+
 ## Autor
 - **Gabriel Hiro Furukawa** - RA: 223190
-- **Rafael Perassi** - RA: 215216
+- **Rafael Perassi** - RA: 161134
