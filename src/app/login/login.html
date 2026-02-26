@@ -1,0 +1,19 @@
+<div class="login-container">
+  <h2>Login</h2>
+
+  @if (erro) {
+    <p class="erro">{{ erro }}</p>
+  }
+
+  <form (ngSubmit)="entrar()">
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email" name="email" required />
+
+    <label>Senha</label>
+    <input type="password" [(ngModel)]="senha" name="senha" required />
+
+    <button type="submit">Entrar</button>
+  </form>
+
+  <p class="link">Não tem conta? <a routerLink="/registro">Cadastre-se</a></p>
+</div>

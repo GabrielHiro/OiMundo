@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Minhas Inscrições</h2>
+
+  @if (inscricoes().length === 0) {
+    <p class="vazio">Nenhuma inscrição até o momento.</p>
+  }
+
+  <div class="lista">
+    @for (insc of inscricoes(); track insc._id) {
+      <div class="card">
+        <div class="card-info">
+          <h3>{{ $any(insc.eventoId).titulo }}</h3>
+          <p>{{ $any(insc.eventoId).dataHora | date:'dd/MM/yyyy HH:mm' }} · {{ $any(insc.eventoId).local }}</p>
+          <span class="categoria">{{ $any(insc.eventoId).categoria }}</span>
+        </div>
+        <div class="card-acoes">
+          <a [routerLink]="['/evento', $any(insc.eventoId)._id]" class="btn-ver">Ver Evento</a>
+          <button (click)="cancelar(insc._id!)" class="btn-cancelar">Cancelar</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

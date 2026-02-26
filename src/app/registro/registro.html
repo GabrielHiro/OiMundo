@@ -1,0 +1,28 @@
+<div class="registro-container">
+  <h2>Cadastro</h2>
+
+  @if (erro) {
+    <p class="erro">{{ erro }}</p>
+  }
+
+  <form (ngSubmit)="cadastrar()">
+    <label>Nome</label>
+    <input type="text" [(ngModel)]="nome" name="nome" required />
+
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email" name="email" required />
+
+    <label>Senha</label>
+    <input type="password" [(ngModel)]="senha" name="senha" required />
+
+    <label>Perfil</label>
+    <select [(ngModel)]="perfil" name="perfil">
+      <option value="participante">Participante</option>
+      <option value="organizador">Organizador</option>
+    </select>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <p class="link">Já tem conta? <a routerLink="/login">Fazer login</a></p>
+</div>

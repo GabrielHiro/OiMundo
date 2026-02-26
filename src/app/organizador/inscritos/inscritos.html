@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Inscritos no Evento</h2>
+
+  @if (inscricoes().length === 0) {
+    <p class="vazio">Nenhum inscrito neste evento.</p>
+  }
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Data da Inscrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (insc of inscricoes(); track insc._id) {
+        <tr>
+          <td>{{ $any(insc.participanteId).nome }}</td>
+          <td>{{ $any(insc.participanteId).email }}</td>
+          <td>{{ insc.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
