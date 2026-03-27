@@ -33,4 +33,12 @@ export class Catalogo implements OnInit {
       })
       .subscribe((data) => this.eventos.set(data));
   }
+
+  statusEvento(dataHora: string): 'futuro' | 'ocorrendo' | 'finalizado' {
+    const agora = new Date();
+    const data = new Date(dataHora);
+    if (data.toDateString() === agora.toDateString()) return 'ocorrendo';
+    if (data > agora) return 'futuro';
+    return 'finalizado';
+  }
 }
