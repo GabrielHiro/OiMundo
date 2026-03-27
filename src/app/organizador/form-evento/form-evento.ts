@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService, Evento } from '../../services/api.service';
@@ -29,7 +29,8 @@ export class FormEvento implements OnInit {
     private api: ApiService,
     private auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -40,11 +41,12 @@ export class FormEvento implements OnInit {
       this.api.eventoDetalhe(id).subscribe((ev) => {
         this.titulo = ev.titulo;
         this.descricao = ev.descricao;
-        this.dataHora = ev.dataHora.slice(0, 16); // formato para input datetime-local
+        this.dataHora = ev.dataHora.slice(0, 16);
         this.local = ev.local;
         this.categoria = ev.categoria;
         this.vagas = ev.vagas;
         this.imagemUrl = ev.imagemUrl || '';
+        this.cdr.markForCheck();
       });
     }
   }

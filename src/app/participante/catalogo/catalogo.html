@@ -32,12 +32,22 @@
 
   <div class="grid">
     @for (ev of eventos(); track ev._id) {
-      <div class="card">
+      <div class="card" [class.card-finalizado]="statusEvento(ev.dataHora) === 'finalizado'">
         @if (ev.imagemUrl) {
           <img [src]="ev.imagemUrl" alt="Imagem do evento" />
         }
         <div class="card-body">
-          <span class="categoria">{{ ev.categoria }}</span>
+          <div class="card-tags">
+            <span class="categoria">{{ ev.categoria }}</span>
+
+            @if (statusEvento(ev.dataHora) === 'finalizado') {
+              <span class="badge-finalizado">Finalizado</span>
+            } 
+            @else if (statusEvento(ev.dataHora) === 'ocorrendo') {
+              <span class="badge-ocorrendo">Acontecendo agora</span>
+            }
+
+          </div>
           <h3>{{ ev.titulo }}</h3>
           <p class="desc">{{ ev.descricao | slice:0:100 }}{{ ev.descricao.length > 100 ? '...' : '' }}</p>
           <p class="info">{{ ev.dataHora | date:'dd/MM/yyyy HH:mm' }} · {{ ev.local }}</p>
